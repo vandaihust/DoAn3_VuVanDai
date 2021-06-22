@@ -1,16 +1,37 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProgramComponent } from './components/program/program.component';
 
+const routes: Routes = [
+  {path: 'program/1', component: CalendarComponent},
+  {path: 'program', component: ProgramComponent},
+  {path: '', redirectTo: '/program', pathMatch: 'full'},
+  {path: '**', redirectTo: '/program', pathMatch: 'full'}
+];
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CalendarComponent,
+    ProgramComponent,
   ],
   imports: [
+    RouterModule.forRoot(routes),
+    HttpClientModule,
     BrowserModule,
+    ReactiveFormsModule,
+    NgbModule,
     AppRoutingModule
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [],
   bootstrap: [AppComponent]
