@@ -1,5 +1,25 @@
 <div class="main-content">
   <div class="section-content section-content-p30">
-    mtpp
+    <div class="row">
+      <div class="col-md-5">
+        <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
+          <div formGroupName="calendarSolar" class="form-area">
+            <h3>Lịch dương</h3>
+            <div class="col-md-12"><label>Chọn ngày dương lịch</label></div><br>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <input formControlName="dateSolar" type="text" class="form-control" placeholder="MM/dd/yyyy" bsDatepicker>
+                    <div  class="alert alert-danger mt-2">
+
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-info">Chuyển đổi</button>
+            </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
