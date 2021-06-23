@@ -9,9 +9,6 @@
             <div class="col-md-9">
                 <div class="input-space">
                     <input formControlName="dateSolar" type="text" class="form-control" placeholder="MM/dd/yyyy" bsDatepicker>
-                    <div  class="alert alert-danger mt-2">
-
-                    </div>
                 </div>
               </div>
             </div>
@@ -20,6 +17,54 @@
             </div>
         </form>
       </div>
+      <!-- end convert -->
+      <!-- end calendar -->
     </div>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="ketqua" class="form-area">
+          <h3>Kết quả chuyển đổi</h3>
+          <span>Ngày </span><span>Dương lịch </span>
+          <span *ngIf="!isNumber(calendarSolar.day)">{{calendarSolar.day}}/ {{calendarSolar.month}}/ {{calendarSolar.year}}</span>
+          <br>
+          <span>Ngày </span><span>Âm lịch </span>
+           <span *ngIf="!isNumber(calendarSolar.day)">{{calendarLunar.day}}/ {{calendarLunar.month}}/ {{calendarLunar.year}}</span>
+      </div>
+      </div>
+    </div>
+    <!-- end convert -->
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-5">
+        <div class="calendarshow">
+          <h3>ÂM LỊCH VÀ DƯƠNG LỊCH</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>DƯƠNG LỊCH</th>
+                <th>ÂM LỊCH </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td *ngIf="!isNumber(calendarSolar.day)">Tháng {{calendarSolar.month}} Năm {{calendarSolar.year}}</td>
+                <td *ngIf="!isNumber(calendarSolar.day)">Tháng {{calendarLunar.month}} Năm {{calendarLunar.year}}</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="duong" *ngIf="!isNumber(calendarSolar.day)">{{calendarSolar.day}}</div>
+                <div class="chitiet"></div>
+              </td>
+              <td>
+                <div class="am" *ngIf="!isNumber(calendarSolar.day)">{{calendarLunar.day}}</div>
+                <div class="chitiet" *ngIf="!isNumber(calendarSolar.day)"></div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- end calendar -->
   </div>
 </div>
