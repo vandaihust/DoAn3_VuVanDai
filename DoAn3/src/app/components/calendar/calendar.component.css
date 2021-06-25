@@ -1,0 +1,116 @@
+.ketqua {
+  margin-top: 5%;
+}
+h3 {
+  color: rgb(165, 164, 231);
+  font-weight: bold;
+  font-style: italic;
+  font-family: 'Courier New', Courier, monospace;
+}
+.ngaythangnamduong {
+    color: #FF8700;
+  font-weight: bold;
+  font-size: 20px;
+  border: 1px solid #bcccc3;
+  padding: 4px 6px 4px 6px;
+  letter-spacing: 3px;
+  margin-left: 5px;
+
+}
+.ngaythangnamam {
+  color: #0B730B;
+  font-weight: bold;
+  font-size: 20px;
+  border: 1px solid #bcccc3;
+  padding: 4px 6px 4px 6px;
+  letter-spacing: 3px;
+  margin-left: 5px;
+}
+.calendarshow {
+  position: absolute;
+  margin-top: -45%;
+  width: 45%;
+}
+.calendar-header{
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  min-height: 46px;
+  background: #006e33;
+  margin-top: 0;
+  border-bottom: 1px solid #519038;
+  box-shadow: 1px 1px 1px #888888;
+}
+.calendar-title {
+  color: white!important;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  padding: 14px 0 4px 0 !important;
+  font-style: normal;
+}
+.calendar-day {
+  width: 100%;
+  background: #5CB85C;
+  box-shadow: 1px 1px 1px #888888;
+}
+.calendar-day thead tr th {
+  width: 50%;
+text-align: center;
+line-height: 18px;
+font-size: 13px;
+color: white;
+padding: 6px;
+border-left: 1px solid #0B730B;
+border-right: 1px solid #4E913D;
+border-bottom: 1px solid #448D35;
+background: #0B730B;
+}
+.lich {
+  /* width: 72%; */
+  /* text-align: center;
+  border: blanchedalmond;
+  background-color: antiquewhite;
+  border-left: 1px solid #0B730B;
+  border-right: 1px solid #4E913D;
+  border-bottom: 1px solid #448D35;
+  padding: 6px; */
+}
+.calendar-day tbody tr td {
+  font-family: Tahoma,Arial;
+  padding: 8px;
+  border: 1px solid #0B730B;
+  background: white;
+  text-align: center;
+}
+.calendar-day tbody tr td div.duong {
+  font-size: 100px;
+  font-weight: bold;
+  color: #FF8700;
+  width: 100%;
+  float: left;
+  height: 185px;
+  padding-top: 50px;
+}
+.calendar-day tbody tr td div.am {
+  font-size: 100px;
+  font-weight: bold;
+  color: #0B730B;
+  width: 100%;
+  float: left;
+  height: 185px;
+  padding-top: 50px;
+}
+.calendar-day tbody tr td div.chitiet {
+  height: 160px;
+  float: left;
+  width: 100%;
+}
+.calendar-day tbody tr td.tot {
+  height: 45px;
+  color: white;
+  font-weight: bold;
+  background: #006e33;
+  border-bottom: 1px solid #006e33;
+}

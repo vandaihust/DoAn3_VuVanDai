@@ -13,7 +13,7 @@
               </div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-info">Chuyển đổi</button>
+                <button type="submit" class="btn btn-info"style ="color: white">Chuyển đổi</button>
             </div>
         </form>
       </div>
@@ -21,28 +21,32 @@
       <!-- end calendar -->
     </div>
     <div class="row">
-      <div class="col-md-5">
-        <div class="ketqua" class="form-area">
+      <div class="col-md-5 ketqua">
+        <div class="form-area ">
           <h3>Kết quả chuyển đổi</h3>
-          <span>Ngày </span><span>Dương lịch </span>
-          <span *ngIf="!isNumber(calendarSolar.day)">{{calendarSolar.day}}/ {{calendarSolar.month}}/ {{calendarSolar.year}}</span>
-          <br>
-          <span>Ngày </span><span>Âm lịch </span>
-           <span *ngIf="!isNumber(calendarSolar.day)">{{calendarLunar.day}}/ {{calendarLunar.month}}/ {{calendarLunar.year}}</span>
+          <i class="fas fa-sun"> </i><span> Ngày </span><span style="font-weight: bold;">Dương lịch </span>
+          <span class="ngaythangnamduong"*ngIf="!isNumber(calendarSolar.day)">{{calendarSolar.day}}/{{calendarSolar.month}}/{{calendarSolar.year}}</span>
+          <br><br>
+          <i class="fas fa-sun"> </i><span> Ngày </span><span style="font-weight: bold;">Âm lịch </span>
+           <span class="ngaythangnamam" *ngIf="!isNumber(calendarSolar.day)">{{calendarLunar.day}}/{{calendarLunar.month}}/{{calendarLunar.year}}</span>
       </div>
       </div>
     </div>
     <!-- end convert -->
     <div class="row">
       <div class="col-md-6"></div>
-      <div class="col-md-5">
+      <div class="col-md-6">
         <div class="calendarshow">
-          <h3>ÂM LỊCH VÀ DƯƠNG LỊCH</h3>
-          <table>
+          <div class="calendar-header">
+            <div class="calendar-title">
+              <h3 style="color: white!important; font-style: normal;">ÂM LỊCH VÀ DƯƠNG LỊCH</h3>
+            </div>
+          </div>
+          <table class="calendar-day">
             <thead>
               <tr>
-                <th>DƯƠNG LỊCH</th>
-                <th>ÂM LỊCH </th>
+                <th class="lich duonglich">DƯƠNG LỊCH</th>
+                <th class="lich amlich">ÂM LỊCH </th>
               </tr>
             </thead>
             <tbody>
@@ -57,8 +61,22 @@
               </td>
               <td>
                 <div class="am" *ngIf="!isNumber(calendarSolar.day)">{{calendarLunar.day}}</div>
-                <div class="chitiet" *ngIf="!isNumber(calendarSolar.day)"></div>
+                <div class="chitiet" *ngIf="!isNumber(calendarSolar.day)">
+                  <p style="margin-top: 20px;">Ngày: <b *ngIf="!isNumber(calendarSolar.day)">{{calendarLunar.dayCan}} {{calendarLunar.dayChi}} </b></p>
+                   <p> Tháng: <b *ngIf="!isNumber(calendarSolar.day)">{{calendarLunar.monthCan}} {{calendarLunar.monthChi}}</b >
+                            <b *ngIf="calendarLunar.leapmonth == 1"> Nhuận</b>
+                  </p>
+                  <p>Năm: <b *ngIf="!isNumber(calendarSolar.day)">{{calendarLunar.yearCan}} {{calendarLunar.yearChi}}</b>
+                          <b *ngIf="checkNamNhuan(calendarLunar.year) == true"> Nhuận</b>
+                  </p>
+                  <p><b *ngIf="calendarLunar.leapmonth == 0">Không phải tháng nhuận</b>
+                                  <b *ngIf="calendarLunar.leapmonth == 1"> Là tháng nhuận</b>
+                  </p>
+                </div>
               </td>
+            </tr>
+            <tr>
+              <td class="tot"></td>
             </tr>
             </tbody>
           </table>

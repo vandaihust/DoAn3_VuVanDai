@@ -1,12 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Can } from '../common/can';
+import { Chi } from '../common/chi';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalendarService {
-
+  private canUrl = 'http://localhost:8080/api/can';
+  private chiUrl = 'http://localhost:8080/api/chi';
   constructor(private httpClient: HttpClient) { }
+  getCan(): Observable<Can[]> {
+    return this.httpClient.get<Can[]>(this.canUrl);
+  }
+  getChi(): Observable<Chi[]> {
+    return this.httpClient.get<Chi[]>(this.chiUrl);
+  }
 
   getCalendarLunar(dd: number, mm: number, yy: number): string {
     let lunar = new Array();
