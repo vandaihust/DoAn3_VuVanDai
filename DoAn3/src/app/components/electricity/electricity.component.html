@@ -1,0 +1,84 @@
+<div class="main-content body">
+  <div class="section-content section-content-p30">
+      <div class="container">
+        <div class="row">
+          <div class="form-group">
+            <form [formGroup]="electricityFormGroup" (ngSubmit)="onSubmit()">
+              <div formGroupName="electricityForm">
+                <div class="row" >
+                  <div class="title col-md-6">
+                    <h3>Nhập các thông số</h3>
+                  </div>
+                </div>
+                <div class="row thongso">
+                  <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                      <label for="electricNumbar"  class="col-form-label">Tổng điện năng tiêu thụ (kWh)</label>
+                    </div>
+                    <div class="col-auto">
+                      <input type="text" formControlName="count" class="form-control" >
+                    </div>
+                    <div class="col-auto">
+                      <span id="electricHelp" class="form-text">
+                        <div *ngIf="checkNumberForm()==false" class="alert alert-danger mt-2">
+                          Vui lòng nhập  đúng định dạng ở đây
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <button type="submit" class="btn btn-primary tinhtoan" [disabled]="checkNumberForm()==false"><i class="fas fa-search-dollar"></i> Tính toán</button>
+            </form>
+          </div>
+        </div>
+        <!-- end row 1-->
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Kết quả</h3>
+          </div>
+          <div class="col-md-8">
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col" class="text-center">BẬC</th>
+                  <th scope="col" class="text-center">ĐƠN GIÁ THEO QĐ 648/QĐ-BCT (đồng/kWh)</th>
+                  <th scope="col" class="text-center">SẢN LƯỢNG (kWh)</th>
+                  <th scope="col" class="text-center">THÀNH TIỀN (đồng)</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="countInt > 0 && checkNumberForm()==true">
+                <tr *ngFor="let temElectricity of electricityShow">
+                  <td class="text-center">Bậc thang {{temElectricity.id}} </td>
+                  <td class="text-center">{{temElectricity.unitPrice}}</td>
+                  <td class="text-center">{{temElectricity.count}} </td>
+                  <td class="text-center">{{numberWithSpaces(temElectricity.money)}} </td>
+                </tr>
+              </tbody>
+              <tbody *ngIf="countInt <= 0 || checkNumberForm()==false">
+                <tr *ngFor="let temElectricity of electricity">
+                  <td class="text-center">Bậc thang {{temElectricity.id}} </td>
+                  <td class="text-center">{{temElectricity.unitPrice}}</td>
+                  <td class="text-center">{{temElectricity.count}} </td>
+                  <td class="text-center"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- <div class="col-md-1"></div> -->
+          <div class="col-md-4">
+            <div class="row">
+              <h3>Thành tiền</h3>
+              <p>Tiền điện: <b>{{numberWithSpaces(totalMoney)}} </b>đồng</p>
+              <p>Tiền thuế GTGT(10%) tiền điện: <b>{{numberWithSpaces(tax)}} </b>đồng</p>
+              <p style="color:#E91E63">Tổng cộng các tiền thanh toán: <b>{{numberWithSpaces(totalMoneyAndTax)}} </b>đồng</p>
+            </div>
+          </div>
+        </div>
+        <!-- end row electricity -->
+
+      </div>
+      <!-- end container -->
+  </div>
+</div>

@@ -114,3 +114,6 @@ background: #0B730B;
   background: #006e33;
   border-bottom: 1px solid #006e33;
 }
+.body {
+  font-family: 'Times New Roman', Times, serif;
+}
