@@ -5,46 +5,56 @@
         <div class="row content">
          <div class="col-md-5">
           <div class="form-group">
-            <form >
-              <div class="row g-3 align-items-center">
-                <div class="col-md-5">
-                  <label for="inputSalary" class="col-form-label"><i class="fas fa-hand-holding-usd" style="font-size: 30px; color: rgb(255, 51, 0);"></i>  Tổng thu nhập</label>
+            <form [formGroup]="taxFormGroup" (ngSubmit)="onSubmit()">
+              <div formGroupName="taxForm">
+                <div class="row g-3 align-items-center">
+                  <div class="col-md-5">
+                    <label for="inputSalary" class="col-form-label"><i class="fas fa-hand-holding-usd" style="font-size: 30px; color: rgb(255, 51, 0);"></i>  Tổng thu nhập</label>
+                  </div>
+                  <div class="col-md-7">
+                    <input type="text" id="inputSalary" class="form-control" formControlName="salary">
+                    <span style="position: absolute; margin-top: -32px; margin-left: 23%;">VNĐ</span>
+                  </div>
+                  <div class="col-md-5"></div>
+                  <div class="col-md-7">
+                    <span *ngIf="salary?.invalid && (salary?.dirty || salary?.touched)" class="form-text" style="color: red;">
+                      <div *ngIf="salary?.errors?.required">
+                        Không được để trống
+                      </div>
+                      <div *ngIf="salary?.errors?.pattern ">
+                        Nhập đúng định dạng số
+                      </div>
+                    </span>
+                  </div>
                 </div>
-                <div class="col-md-7">
-                  <input type="text" id="inputSalary" class="form-control" >
-                  <span style="position: absolute; margin-top: -32px; margin-left: 23%;">VNĐ</span>
-                </div>
-                <div class="col-md-5"></div>
-                <div class="col-md-7">
-                  <span class="form-text" style="color: red;">
-                    Must be 8-20 characters long.
-                  </span>
-                </div>
-              </div>
-              <br>
-              <div class="row g-3 align-items-center">
-                <div class="col-md-5">
-                  <label for="inputPeople" class="col-form-label"><i class="fas fa-users" style="font-size: 30px; color: rgb(255, 51, 0);"></i>  Số người phụ thuộc</label>
-                </div>
-                <div class="col-md-7">
-                  <input type="text" id="inputPeople" class="form-control" >
-                  <span style="position: absolute; margin-top: -32px; margin-left: 23%;">Người</span>
-                </div>
-                <div class="col-md-5"></div>
-                <div class="col-md-7">
-                  <span class="form-text" style="color: red;">
-                    Must be 8-20 characters long.
-                  </span>
+                <br>
+                <div class="row g-3 align-items-center">
+                  <div class="col-md-5">
+                    <label for="inputPeople" class="col-form-label"><i class="fas fa-users" style="font-size: 30px; color: rgb(255, 51, 0);"></i>  Số người phụ thuộc</label>
+                  </div>
+                  <div class="col-md-7">
+                    <input type="text" id="inputPeople" class="form-control" formControlName="people">
+                    <span style="position: absolute; margin-top: -32px; margin-left: 23%;" >Người</span>
+                  </div>
+                  <div class="col-md-5"></div>
+                  <div class="col-md-7">
+                    <span *ngIf="people?.invalid && (people?.dirty || people?.touched)" class="form-text" style="color: red;">
+                      <div *ngIf="people?.errors?.required ">
+                        Không được để trống
+                      </div>
+                      <div *ngIf="people?.errors?.pattern ">
+                        Nhập đúng số người
+                      </div>
+                    </span>
+                  </div>
                 </div>
               </div>
             <button type="submit" class="btn btn-primary tinhtoan"><i class="fas fa-search-dollar"></i> Tính toán</button>
             <br><br>
             <div class="row g-3 align-items-center">
-              <div class="col-md-5">
-                <label for="inputPeople" class="col-form-label"><i class="fas fa-dollar-sign" style="font-size: 30px; color: rgb(255, 51, 0);"></i>  Thuế TNCN phải nộp: </label>
-              </div>
-              <div class="col-md-7">
-                <span><b>100000 </b>VND</span>
+              <div class="col-md-12">
+                <i class="fas fa-dollar-sign" style="font-size: 30px; color: rgb(255, 51, 0);"></i>
+                <span>  Thuế TNCN phải nộp:<b style="color: red;"> {{numberWithSpaces(totalTax)}} </b>VNĐ</span>
               </div>
             </div>
             </form>
@@ -55,7 +65,7 @@
          <div class="col-md-6">
           <div class="row">
             <div class="col-md-12">
-              <h3>Bảng thu nhập tính thuế và thuế suất</h3>
+              <h3 class="text-center">Bảng thu nhập tính thuế và thuế suất</h3>
             </div>
             <div class="col-md-12">
               <table class="table table-borderless">
@@ -80,15 +90,24 @@
          <!-- end table tax -->
         </div>
         <!-- end row 1-->
-        <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-10">
-            <h4>Diễn giải cách tính thuế TNCN</h4>
-            <p>Giảm trừ bản thân = 11 000 000</p>
-            <p>Giảm trừ người phụ thuộc = 2 x 4.400.000 = 8.800.000</p>
-            <p>Thu nhập chịu thuế = 100.000.000 - 11.000.000 - 8.800.000 = 80.200.000</p>
-            <p>Bậc 1: Thu nhập tính thuế đến 05 triệu đồng, thuế suất 5%:</p>
-            <i>5.000.000 × 5% = 250.000</i>
+        <hr>
+        <div class="row tinhthue">
+          <div class="col-md-12 ">
+            <h4 class="text-center">Diễn giải cách tính thuế TNCN</h4>
+            <p>Giảm trừ bản thân = {{giamtrubanthan}} VNĐ</p>
+            <p>Giảm trừ người phụ thuộc = {{peopleInt}} x {{numberWithSpaces(giamtrunguoiphuthuoc)}} = {{numberWithSpaces(tiennguoiphuthuoc)}} VNĐ</p>
+            <p *ngIf="thunhapchiuthue > 0">Thu nhập chịu thuế = {{numberWithSpaces(salaryInt)}} - {{numberWithSpaces(giamtrubanthan)}} - {{numberWithSpaces(tiennguoiphuthuoc)}} = {{numberWithSpaces(thunhapchiuthue)}} VNĐ</p>
+            <div *ngFor="let tempTaxComputeDegree of taxComputeDegree">
+              <div *ngFor="let tempTaxShow of taxShow">
+                <p *ngIf="tempTaxComputeDegree.id == tempTaxShow.id">
+                  {{tempTaxComputeDegree.name}}: {{tempTaxComputeDegree.content}}:
+                  <i><b>{{numberWithSpaces(tempTaxShow.salary)}} * {{numberWithSpaces(tempTaxShow.tax)}}% = {{numberWithSpaces(tempTaxShow.money)}} VNĐ</b></i>
+                </p>
+              </div>
+              <p *ngIf="tempTaxComputeDegree.id ==8">{{tempTaxComputeDegree.content}}:
+                <b style="color: red;">{{numberWithSpaces(totalTax)}}</b> VNĐ
+              </p>
+            </div>
           </div>
           <!-- end compute -->
         </div>
