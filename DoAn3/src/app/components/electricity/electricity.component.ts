@@ -122,7 +122,7 @@ export class ElectricityComponent implements OnInit {
   }
   numberWithSpaces(x: number) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-}
+  }
   onSubmit() {
     this.totalMoney = this.computeElectricMoney(this.countInt, this.electricity);
     console.log(this.electricity[3].unitPrice);
