@@ -1,0 +1,99 @@
+<div class="main-content body">
+  <div class="section-content section-content-p30">
+      <div class="container">
+        <h2 style="color: rgb(67, 114, 185); text-align: center;">HỆ THỐNG TÍNH TIỀN THUẾ THU NHẬP CÁ NHÂN</h2>
+        <div class="row content">
+         <div class="col-md-5">
+          <div class="form-group">
+            <form >
+              <div class="row g-3 align-items-center">
+                <div class="col-md-5">
+                  <label for="inputSalary" class="col-form-label"><i class="fas fa-hand-holding-usd" style="font-size: 30px; color: rgb(255, 51, 0);"></i>  Tổng thu nhập</label>
+                </div>
+                <div class="col-md-7">
+                  <input type="text" id="inputSalary" class="form-control" >
+                  <span style="position: absolute; margin-top: -32px; margin-left: 23%;">VNĐ</span>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-7">
+                  <span class="form-text" style="color: red;">
+                    Must be 8-20 characters long.
+                  </span>
+                </div>
+              </div>
+              <br>
+              <div class="row g-3 align-items-center">
+                <div class="col-md-5">
+                  <label for="inputPeople" class="col-form-label"><i class="fas fa-users" style="font-size: 30px; color: rgb(255, 51, 0);"></i>  Số người phụ thuộc</label>
+                </div>
+                <div class="col-md-7">
+                  <input type="text" id="inputPeople" class="form-control" >
+                  <span style="position: absolute; margin-top: -32px; margin-left: 23%;">Người</span>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-7">
+                  <span class="form-text" style="color: red;">
+                    Must be 8-20 characters long.
+                  </span>
+                </div>
+              </div>
+            <button type="submit" class="btn btn-primary tinhtoan"><i class="fas fa-search-dollar"></i> Tính toán</button>
+            <br><br>
+            <div class="row g-3 align-items-center">
+              <div class="col-md-5">
+                <label for="inputPeople" class="col-form-label"><i class="fas fa-dollar-sign" style="font-size: 30px; color: rgb(255, 51, 0);"></i>  Thuế TNCN phải nộp: </label>
+              </div>
+              <div class="col-md-7">
+                <span><b>100000 </b>VND</span>
+              </div>
+            </div>
+            </form>
+          </div>
+         </div>
+         <!-- end input -->
+         <div class="col-md-1"></div>
+         <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Bảng thu nhập tính thuế và thuế suất</h3>
+            </div>
+            <div class="col-md-12">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center">BẬC</th>
+                    <th scope="col" class="text-center">Thu nhập tính thuế/tháng (triệu đồng) 	</th>
+                    <th scope="col" class="text-center">Thuế suất</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr *ngFor="let tempTaxTable of taxTable">
+                    <td class="text-center">Bậc {{tempTaxTable.id}}  </td>
+                    <td class="text-center">{{tempTaxTable.salaryMonth}}  </td>
+                    <td class="text-center">{{tempTaxTable.tax}}  </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+         </div>
+         <!-- end table tax -->
+        </div>
+        <!-- end row 1-->
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <h4>Diễn giải cách tính thuế TNCN</h4>
+            <p>Giảm trừ bản thân = 11 000 000</p>
+            <p>Giảm trừ người phụ thuộc = 2 x 4.400.000 = 8.800.000</p>
+            <p>Thu nhập chịu thuế = 100.000.000 - 11.000.000 - 8.800.000 = 80.200.000</p>
+            <p>Bậc 1: Thu nhập tính thuế đến 05 triệu đồng, thuế suất 5%:</p>
+            <i>5.000.000 × 5% = 250.000</i>
+          </div>
+          <!-- end compute -->
+        </div>
+
+      </div>
+      <!-- end container -->
+  </div>
+</div>
