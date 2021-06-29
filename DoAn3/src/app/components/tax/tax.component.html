@@ -65,7 +65,7 @@
          <div class="col-md-6">
           <div class="row">
             <div class="col-md-12">
-              <h3 class="text-center">Bảng thu nhập tính thuế và thuế suất</h3>
+              <h4 class="text-center text-uppercase">Bảng thu nhập tính thuế và thuế suất</h4>
             </div>
             <div class="col-md-12">
               <table class="table table-borderless">
@@ -93,7 +93,7 @@
         <hr>
         <div class="row tinhthue">
           <div class="col-md-12 ">
-            <h4 class="text-center">Diễn giải cách tính thuế TNCN</h4>
+            <h4 class="text-center text-uppercase">Diễn giải cách tính thuế TNCN</h4>
             <p>Giảm trừ bản thân = {{giamtrubanthan}} VNĐ</p>
             <p>Giảm trừ người phụ thuộc = {{peopleInt}} x {{numberWithSpaces(giamtrunguoiphuthuoc)}} = {{numberWithSpaces(tiennguoiphuthuoc)}} VNĐ</p>
             <p *ngIf="thunhapchiuthue > 0">Thu nhập chịu thuế = {{numberWithSpaces(salaryInt)}} - {{numberWithSpaces(giamtrubanthan)}} - {{numberWithSpaces(tiennguoiphuthuoc)}} = {{numberWithSpaces(thunhapchiuthue)}} VNĐ</p>

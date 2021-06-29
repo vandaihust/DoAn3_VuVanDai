@@ -77,6 +77,7 @@ export class TaxComponent implements OnInit {
       if((salary-this.giamtrubanthan-people * this.giamtrunguoiphuthuoc) <= 0) {
         this.totalTax = 0;
         this.resetData();
+        this.tiennguoiphuthuoc = people * this.giamtrunguoiphuthuoc;
         // console.log(this.totalTax);
       } else {
         let thunhapchiuthue = salary - this.giamtrubanthan - people * this.giamtrunguoiphuthuoc;
