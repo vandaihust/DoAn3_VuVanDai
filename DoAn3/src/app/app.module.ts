@@ -13,11 +13,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker'
 import { ElectricityComponent } from './components/electricity/electricity.component';
 import { TaxComponent } from './components/tax/tax.component';
+import { ImageProcessingComponent } from './components/image-processing/image-processing.component';
 const routes: Routes = [
   {path: 'program/1', component: CalendarComponent},
   {path: 'program', component: ProgramComponent},
   {path: 'program/2', component: ElectricityComponent},
   {path: 'program/3', component: TaxComponent},
+  {path: 'program/4', component: ImageProcessingComponent},
   {path: '', redirectTo: '/program/1', pathMatch: 'full'},
   {path: '**', redirectTo: '/program/1', pathMatch: 'full'}
 ];
@@ -28,6 +30,7 @@ const routes: Routes = [
     ProgramComponent,
     ElectricityComponent,
     TaxComponent,
+    ImageProcessingComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
